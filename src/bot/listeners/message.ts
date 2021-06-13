@@ -1,33 +1,12 @@
 import { Message } from "discord.js";
-import { all, equals, not, toLower, replace } from "ramda";
-import { pick_word } from "../../utils";
-import Globals from "../../Globals";
-import command_list, {load_commands} from "../commands/commands";
-import {guild_allowed, not_bot, is_command} from "../utils";
-const commands = load_commands(command_list);
+import { all, equals, not } from "ramda";
+import {guild_allowed, not_bot} from "../utils";
+import commands from "../commands";
+import {load_commands} from "../commander";
+import {utils as commander_utilies} from "../commander";
+const {is_command, get_command} = commander_utilies;
 
-/**
- * Remueve el substring coincidente con `Globals.COMMAND_MATCH` del contenido y devuelve el resultado
- * @param content Cualquier texto
- */
-export function remove_prefix(content:string):string {
-    return replace(Globals.COMMAND_MATCH, "", content);
-}
-
-/**
- * Devuelve en minusculas la primer palabra del texto excluyendo el substring `Globals.BOT_PREFIX`, o null en caso de no ser posible
- * @param content Cualquier texto
- */
-export function get_command(content:string):string | null {
-    if(not(is_command(content))) return null;
-
-    const prefix_removed = remove_prefix(content);
-
-    const command = pick_word(prefix_removed, 0);
-    if(!command) return null;
-
-    return toLower(command);
-}
+const commander = load_commands(commands);
 
 /**
  * Handler de mensajes
@@ -44,7 +23,7 @@ export default async function message(message:Message):Promise<void> {
     //Si es comando, ejecuta el comando
     if(is_command(message.content)){
         const command = get_command(message.content);
-        if(command) commands(command, message);
+        if(command) commander(command, message);
     }
 
     //delega el evento al futuras funciones...

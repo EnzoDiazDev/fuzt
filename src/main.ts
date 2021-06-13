@@ -1,19 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 if(process.env.NODE_ENV === "development") require("dotenv").config();
 import Globals from "./Globals";
-import {new_client, start, add_listener} from "./bot/bot";
-
-import ready from "./bot/listeners/ready";
-import message from "./bot/listeners/message";
-
+import {ready, message} from "./bot/listeners";
+import {new_bot, add_listener} from "./bot";
 
 function main():void {
-    const client = new_client();
+    const bot = new_bot();
 
-    add_listener(client, "ready", ready(client));
-    add_listener(client, "message", message);
+    add_listener(bot, "ready", ready(bot));
+    add_listener(bot, "message", message);
 
-    start(client, Globals.DISCORD_BOT_KEY);
+    bot.login(Globals.DISCORD_BOT_KEY);
 }
 
 main();

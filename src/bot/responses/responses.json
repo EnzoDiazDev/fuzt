@@ -1,0 +1,31 @@
+{
+    "unknown_error": [
+        "No esperaba que algo saliera mal.",
+        "Esto... algo no anda bien, vuelve a intentarlo.",
+        "A lo mejor no me programaron bien, intentalo de nuevo."
+    ],
+
+    "need_mention": [
+        "Debes mencionar a un usuario.",
+        "Esperaba que mencionaras a alguien.",
+        "Para usar este comando debes mencionar un usuario."
+    ],
+
+    "need_reason": [
+        "Debes incluir un motivo para realizar esta acción",
+        "No se puede moderar a alguien sin razón, añade un motivo.",
+        "¿Por qué?"
+    ],
+    
+    "cant_be_moderated": [
+        "No se puede moderar a un moderador, se moderan solos.",
+        "Este usuario ya es bastante moderado.",
+        "No me hagas llamar un administrador.",
+        "El owner se enterará de esto... mañana.",
+        "No es posible moderar a un moderador."
+    ],
+
+    "warn_successful": [
+        "El usuario {0} ha sido advertido.\nRazón: {2}"
+    ]
+}
