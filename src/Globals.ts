@@ -1,10 +1,8 @@
-import { isNil } from "ramda";
-import {Cached, new_cache} from "./cache";
-import {Channels} from "./entities";
+// import { isNil } from "ramda";
+// import {Cached, new_cache} from "./cache";
 
-type GlobalCache = {
-    channels: Cached<Channels>
-};
+import { isNil } from "ramda";
+import database, { Database } from "./database";
 
 export default class Globals {
     public static test = "Hello world";
@@ -27,26 +25,37 @@ export default class Globals {
     /** Expresión regular para identificar comandos */
     public static readonly COMMAND_MATCH = new RegExp(`${Globals.BOT_PREFIX}\\s*`);
 
-    /** Caché de cachés
-     * @see `Globals.load_cache()` para cargarlos
-     * @see `Globals.cache(key)` para consumirlo
-     */
-    private static _cache:Cached<GlobalCache>;
+    // /** Caché de cachés
+    //  * @see `Globals.load_cache()` para cargarlos
+    //  * @see `Globals.cache(key)` para consumirlo
+    //  */
+    // private static _cache:Cached<GlobalCache>;
 
-    /** Carga o sobreescribe el cache completo
-     * @param data los datos escenciales del programa
-     */
-    public static load_cache(data:GlobalCache):void {
-        this._cache = new_cache(data);
+    // /** Carga o sobreescribe el cache completo
+    //  * @param data los datos escenciales del programa
+    //  */
+    // public static load_cache(data:GlobalCache):void {
+    //     this._cache = new_cache(data);
+    // }
+
+    // /** Devuelve el cache indicado, o lo escribe si se asigna un valor
+    //  * @param key Nombre del cache a obtener
+    //  * @param value Valor a asignar a la propiedad
+    //  * @returns El cache indicado o null en caso de no existir.
+    //  */
+    // public static cache<K extends keyof GlobalCache, V extends GlobalCache[K]>(key:K, value?:V):Cached<GlobalCache> | GlobalCache[K] | null {
+    //     if(isNil(value)) return this._cache(key);
+    //     else return this._cache(key, value);
+    // }
+
+    private static _database:Database | null;
+
+    public static load_database(db:Database):void {
+        this._database = database(db);
     }
 
-    /** Devuelve el cache indicado, o lo escribe si se asigna un valor
-     * @param key Nombre del cache a obtener
-     * @param value Valor a asignar a la propiedad
-     * @returns El cache indicado o null en caso de no existir.
-     */
-    public static cache<K extends keyof GlobalCache, V extends GlobalCache[K]>(key:K, value?:V):Cached<GlobalCache> | GlobalCache[K] | null {
-        if(isNil(value)) return this._cache(key);
-        else return this._cache(key, value);
+    public static get database():Database {
+        if(isNil(this._database)) throw new Error("La base de datos no ha sido cargada.");
+        return this._database;
     }
 }

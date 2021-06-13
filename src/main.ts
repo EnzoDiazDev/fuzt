@@ -3,8 +3,12 @@ if(process.env.NODE_ENV === "development") require("dotenv").config();
 import Globals from "./Globals";
 import {ready, message} from "./bot/listeners";
 import {new_bot, add_listener} from "./bot";
+//import localdb from "./localdb";
+
 
 function main():void {
+    //Globals.load_database(localdb);
+
     const bot = new_bot();
 
     add_listener(bot, "ready", ready(bot));
@@ -12,5 +16,6 @@ function main():void {
 
     bot.login(Globals.DISCORD_BOT_KEY);
 }
+
 
 main();
