@@ -85,6 +85,8 @@ const allowed_roles = [
 ];
 
 export default function getrole(message:Message):void {
+    if(message.channel.id !== "647230409179922443") return;
+
     const role = split_parameters(message.content)[0];
     const has_role = message.member?.roles.cache.find(member_role => toLower(member_role.name) === role || `-${toLower(member_role.name)}` === role);
 
