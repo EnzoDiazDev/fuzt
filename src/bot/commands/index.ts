@@ -1,6 +1,7 @@
 import Command from "./Command";
 import ping_handler from "./ping";
 import warn_handler from "./warn";
+import getrole_handler from "./getrole";
 
 export const ping:Command = {
     name: "ping",
@@ -18,8 +19,17 @@ export const warn:Command = {
     fn: warn_handler
 };
 
+export const getrole:Command = {
+    name: "getrole",
+    aliases: ["role", "rol"],
+    description: "Muestra la lista de roles, y añade o quita roles según se especifique.",
+    arguments: ["nombre_de_rol"],
+    fn: getrole_handler
+};
+
 const commands:Command[] = [
     ping,
-    warn
+    getrole
+    //warn
 ];
 export default commands;

@@ -1,4 +1,4 @@
-import {replace, not, toLower, startsWith, drop} from "ramda";
+import {replace, not, toLower, startsWith, drop, trim} from "ramda";
 import Globals from "../../Globals";
 import {pick_word} from "../../utils";
 
@@ -39,5 +39,5 @@ export function split_parameters(content:string):string[] {
 
     const parameters = drop(1, splitted_content);
 
-    return parameters;
+    return parameters.map(parameter => trim(toLower(parameter)));
 }
