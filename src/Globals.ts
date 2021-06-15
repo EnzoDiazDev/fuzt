@@ -11,7 +11,7 @@ export default class Globals {
     }
 
     /** ID del servidor de discord donde funciona el bot */
-    public static readonly ALLOWED_SERVER_ID = "408626752257261578";
+    public static readonly ALLOWED_SERVER_ID = "466723723853037589";
 
     /** Prefijo del bot */
     public static readonly BOT_PREFIX = "!";
