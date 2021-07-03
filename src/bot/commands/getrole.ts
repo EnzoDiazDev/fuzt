@@ -11,7 +11,7 @@ const {split_parameters} = commander_utilities;
 const help_embed = {
     "embed": {
         "title": "Selecciona tu rol de preferencia",
-        "description": "Ejemplo: `!role frontend`\nPara retirarlo utiliza: `!role -frontend`",
+        "description": "Ejemplo: `!role frontend`\nPara retirarlo utiliza: `!role -frontend`\n\nRecuerda que estos roles son mencionables.",
 
         "color": 10527146,
         "fields": [
@@ -40,12 +40,16 @@ const help_embed = {
                 "value": "🚀 Sys admin"
             },
             {
-                "name": "`qa`",
-                "value": "🔧 QA/tester"
+                "name": "`hacker`",
+                "value": "🕵︱Hacker, cybersecurity"
             },
             {
                 "name": "`architect`",
                 "value": "📝 Software Architect"
+            },
+            {
+                "name": "`engineer`",
+                "value": "🔧 Engineer"
             },
             {
                 "name": "`taller`",
@@ -79,9 +83,10 @@ const allowed_roles = [
     "mobile",
     "dba",
     "devop",
-    "qa",
+    "hacker",
     "architect",
     "taller",
+    "engineer"
 ];
 
 export default function getrole(message:Message):void {
